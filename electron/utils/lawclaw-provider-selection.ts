@@ -28,6 +28,8 @@ const JURISMIND_MANAGED_MODELS = new Set([
   'jurismind',
   'jurismind/kimi-k2.5',
   'jurismind/jurismind',
+  'jurismind/jurismind-pro',
+  'jurismind/jurismind-flash',
 ]);
 const LEGACY_LAWCLAW_TEMPLATE_MODELS = new Set(['openai/gpt-5.4']);
 

@@ -462,7 +462,7 @@ describe('chat:sendWithMedia vision routing', () => {
             baseUrl: 'https://llm-api.jurismind.com/v1',
             api: 'openai-completions',
             models: [
-              { id: 'jurismind', name: 'jurismind' },
+              { id: 'jurismind-pro', name: 'jurismind-pro' },
               { id: 'doubao', name: 'doubao', input: ['text', 'image'] },
             ],
           },

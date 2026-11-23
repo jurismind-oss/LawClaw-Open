@@ -744,7 +744,7 @@ export async function validateJurismindReusableToken(
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: getProviderDefaultModel('jurismind') || 'jurismind/jurismind',
+        model: getProviderDefaultModel('jurismind') || 'jurismind/jurismind-pro',
         messages: [{ role: 'user', content: 'ping' }],
         max_tokens: 1,
       }),

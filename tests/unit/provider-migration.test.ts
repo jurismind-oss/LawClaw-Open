@@ -175,12 +175,12 @@ describe('provider migration', () => {
     });
     expect(savedProviders[0]).toMatchObject({
       id: 'jurismind',
-      model: 'jurismind/jurismind',
+      model: 'jurismind/jurismind-pro',
     });
     expect(setOpenClawAgentModel).toHaveBeenCalledWith(
       'lawclaw-main',
       'jurismind',
-      'jurismind/jurismind'
+      'jurismind/jurismind-pro'
     );
     expect(cleanupOpenClawProviderApiKeyConfig).toHaveBeenCalledWith('jurismind');
     expect(cleanupOpenClawAuthProfilesEncoding).toHaveBeenNthCalledWith(1);

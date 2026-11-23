@@ -46,15 +46,20 @@ interface ProviderBackendMeta {
 const REGISTRY: Record<string, ProviderBackendMeta> = {
   jurismind: {
     envVar: 'JURISMIND_API_KEY',
-    defaultModel: 'jurismind/jurismind',
+    // llm-api 网关按 flash/pro 分档提供 jurismind 家族模型, 不再提供裸名 jurismind.
+    defaultModel: 'jurismind/jurismind-pro',
     providerConfig: {
       baseUrl: 'https://llm-api.jurismind.com/v1',
       api: 'openai-completions',
       apiKeyEnv: 'JURISMIND_API_KEY',
       models: [
         {
-          id: 'jurismind',
-          name: 'jurismind',
+          id: 'jurismind-pro',
+          name: 'jurismind-pro',
+        },
+        {
+          id: 'jurismind-flash',
+          name: 'jurismind-flash',
         },
         {
           id: 'doubao',

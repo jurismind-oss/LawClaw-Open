@@ -20,11 +20,14 @@ const LEGACY_PROVIDER_TYPE = 'moonshot_code_plan';
 const OFFICIAL_KIMI_MODEL = 'kimi-coding/k2p5';
 const OFFICIAL_PROVIDER_LABEL = 'Kimi Coding（官方）';
 const JURISMIND_PROVIDER_TYPE = 'jurismind';
-const JURISMIND_MANAGED_MODEL = 'jurismind/jurismind';
+// llm-api 网关取消裸名 jurismind 后, 托管模型改为 pro 档; 旧托管模型名进入
+// LEGACY 集合, 启动迁移会把存量安装自动改写到新模型名.
+const JURISMIND_MANAGED_MODEL = 'jurismind/jurismind-pro';
 const JURISMIND_LEGACY_MODELS = new Set([
   'jurismind',
   'jurismind/kimi-k2.5',
   'kimi-k2.5',
+  'jurismind/jurismind',
 ]);
 const LAWCLAW_AGENT_ID = 'lawclaw-main';
 const LEGACY_QWEN_PROVIDER_TYPE = 'qwen-portal';
