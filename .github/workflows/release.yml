@@ -29,9 +29,9 @@ concurrency:
 
 env:
   NODE_VERSION: "22"
-  OSS_BUCKET: lawclaw
+  OSS_BUCKET: lawclaw-releases-20260916
   OSS_ENDPOINT: oss-cn-shanghai.aliyuncs.com
-  OSS_PUBLIC_BASE_URL: https://lawclaw.oss-cn-shanghai.aliyuncs.com
+  OSS_PUBLIC_BASE_URL: https://lawclaw-releases-20260916.oss-cn-shanghai.aliyuncs.com
   OSS_PREVIEW_PREFIX: preview
 
 jobs:
@@ -262,11 +262,14 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
 
-          foreach ($name in @('SIGNTOOL_ACCESS_KEY', 'SIGNTOOL_ACCESS_SECRET', 'SIGNTOOL_CERT_CODE')) {
-            if ([string]::IsNullOrWhiteSpace((Get-Item "Env:$name").Value)) {
-              throw "Missing GitHub secret for $name"
-            }
+          $signEnabled = -not ([string]::IsNullOrWhiteSpace($env:SIGNTOOL_ACCESS_KEY) -or [string]::IsNullOrWhiteSpace($env:SIGNTOOL_ACCESS_SECRET) -or [string]::IsNullOrWhiteSpace($env:SIGNTOOL_CERT_CODE))
+          if (-not $signEnabled) {
+            Write-Host "Racent signing secrets are missing. Building unsigned Windows artifacts."
+            "WINDOWS_SIGN_ENABLED=false" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+            exit 0
           }
+
+          "WINDOWS_SIGN_ENABLED=true" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
           $toolDir = Join-Path $PWD 'signtool'
           New-Item -ItemType Directory -Force -Path $toolDir | Out-Null
@@ -396,7 +399,12 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           pnpm run bundle:preset-artifacts:offline
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          Invoke-WithRetry { pnpm exec electron-builder --config electron-builder.racent.cjs --win --x64 --publish never }
+          if ($env:WINDOWS_SIGN_ENABLED -eq 'true') {
+            Invoke-WithRetry { pnpm exec electron-builder --config electron-builder.racent.cjs --win --x64 --publish never }
+          } else {
+            Write-Host "Windows signing disabled. Building unsigned artifacts."
+            Invoke-WithRetry { pnpm exec electron-builder --config electron-builder.nosign.yml --win --x64 --publish never }
+          }
 
       - name: Validate artifact file names include release tag version
         shell: bash
