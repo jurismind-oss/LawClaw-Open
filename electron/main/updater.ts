@@ -16,7 +16,7 @@ import { setQuitting } from './app-state';
 import { isUnsignedMacBuild } from '../utils/build-flags';
 
 /** Base OSS URL (without trailing channel path). */
-const DEFAULT_OSS_BASE_URL = 'https://lawclaw.oss-cn-shanghai.aliyuncs.com';
+const DEFAULT_OSS_BASE_URL = 'https://lawclaw-releases-20260916.oss-cn-shanghai.aliyuncs.com';
 
 function normalizeBaseUrl(url: string): string {
   return url.replace(/\/+$/, '');

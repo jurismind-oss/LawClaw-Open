@@ -24,8 +24,8 @@
   <a href="https://lawhub.jurismind.com" target="_blank">
     <img src="https://img.shields.io/badge/LawHub-lawhub.jurismind.com-0F766E?style=flat-square" alt="LawHub" />
   </a>
-  <img src="https://img.shields.io/github/downloads/jurismind-dev/LawClaw/total?label=downloads&style=flat-square&color=%23027DEB" alt="Downloads" />
-  <img src="https://img.shields.io/github/license/jurismind-dev/LawClaw?style=flat-square" alt="License" />
+  <img src="https://img.shields.io/github/downloads/jurismind-oss/LawClaw-Open/total?label=downloads&style=flat-square&color=%23027DEB" alt="Downloads" />
+  <img src="https://img.shields.io/github/license/jurismind-oss/LawClaw-Open?style=flat-square" alt="License" />
 </p>
 
 <p align="center">
@@ -169,19 +169,19 @@ LawClaw 官方团队深度自研并严选了一系列高质量、开源的法律
 
 推荐从 OSS（国内镜像）下载适用于当前平台的最新版本：
 
-- **windows x64**：https://lawclaw.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-win-x64.exe
-- **Mac x64**：https://lawclaw.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-mac-x64.dmg
-- **Mac arm**：https://lawclaw.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-mac-arm64.dmg
+- **windows x64**：https://lawclaw-releases-20260916.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-win-x64.exe
+- **Mac x64**：https://lawclaw-releases-20260916.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-mac-x64.dmg
+- **Mac arm**：https://lawclaw-releases-20260916.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-mac-arm64.dmg
 
 Windows 预构建版本使用锐成信息远程代码签名服务进行代码签名。
 
-GitHub Releases 仍可作为备用下载渠道：[Releases](https://github.com/jurismind-dev/LawClaw/releases)。
+GitHub Releases 仍可作为备用下载渠道：[Releases](https://github.com/jurismind-oss/LawClaw-Open/releases)。
 
 #### 从源码构建
 
 ```bash
 # 克隆仓库
-git clone https://github.com/jurismind-dev/LawClaw
+git clone https://github.com/jurismind-oss/LawClaw-Open
 cd LawClaw
 
 # 初始化项目

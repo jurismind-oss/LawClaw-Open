@@ -24,8 +24,8 @@
   <a href="https://lawhub.jurismind.com" target="_blank">
     <img src="https://img.shields.io/badge/LawHub-lawhub.jurismind.com-0F766E?style=flat-square" alt="LawHub" />
   </a>
-  <img src="https://img.shields.io/github/downloads/jurismind-dev/LawClaw/total?label=downloads&style=flat-square&color=%23027DEB" alt="Downloads" />
-  <img src="https://img.shields.io/github/license/jurismind-dev/LawClaw?style=flat-square" alt="License" />
+  <img src="https://img.shields.io/github/downloads/jurismind-oss/LawClaw-Open/total?label=downloads&style=flat-square&color=%23027DEB" alt="Downloads" />
+  <img src="https://img.shields.io/github/license/jurismind-oss/LawClaw-Open?style=flat-square" alt="License" />
 </p>
 
 <p align="center">
@@ -167,19 +167,19 @@ The LawClaw team has independently developed and carefully curated a series of h
 
 Download the latest version for your platform from OSS (China mirror):
 
-- **Windows x64**: https://lawclaw.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-win-x64.exe
-- **Mac x64**: https://lawclaw.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-mac-x64.dmg
-- **Mac arm64**: https://lawclaw.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-mac-arm64.dmg
+- **Windows x64**: https://lawclaw-releases-20260916.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-win-x64.exe
+- **Mac x64**: https://lawclaw-releases-20260916.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-mac-x64.dmg
+- **Mac arm64**: https://lawclaw-releases-20260916.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-mac-arm64.dmg
 
 Windows pre-built releases are code signed through Racent remote code signing.
 
-GitHub Releases remains available as a fallback download channel: [Releases](https://github.com/jurismind-dev/LawClaw/releases).
+GitHub Releases remains available as a fallback download channel: [Releases](https://github.com/jurismind-oss/LawClaw-Open/releases).
 
 #### Build from Source
 
 ```bash
 # Clone the repository
-git clone https://github.com/jurismind-dev/LawClaw
+git clone https://github.com/jurismind-oss/LawClaw-Open
 cd LawClaw
 
 # Initialize the project
@@ -375,9 +375,9 @@ LawClaw (劳有钳) is built on top of the following outstanding open-source pro
 
 Welcome to join our community to connect with other users, get help, and share your experience.
 
-- **windows x64**：https://lawclaw.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-win-x64.exe
-- **Mac x64**：https://lawclaw.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-mac-x64.dmg
-- **Mac arm**：https://lawclaw.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-mac-arm64.dmg
+- **windows x64**：https://lawclaw-releases-20260916.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-win-x64.exe
+- **Mac x64**：https://lawclaw-releases-20260916.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-mac-x64.dmg
+- **Mac arm**：https://lawclaw-releases-20260916.oss-cn-shanghai.aliyuncs.com/latest/LawClaw-mac-arm64.dmg
 
 ---
 

@@ -45,11 +45,11 @@ type InternalAutomationConfig = {
 };
 
 const LAWCLAW_DOCS_URL = 'https://jurismind.com';
-const LAWCLAW_GITHUB_URL = 'https://github.com/jurismind-dev/LawClaw';
+const LAWCLAW_GITHUB_URL = 'https://github.com/jurismind-oss/LawClaw-Open';
 const LAWCLAW_PRIVACY_POLICY_URL = 'https://files.jurismind.com/PrivacyPolicy.pdf';
 const LAWCLAW_SERVICE_AGREEMENT_URL = 'https://files.jurismind.com/ServiceAgreement.pdf';
 const LAWCLAW_MIT_LICENSE_URL =
-  'https://github.com/jurismind-dev/LawClaw?tab=License-1-ov-file#readme';
+  'https://github.com/jurismind-oss/LawClaw-Open?tab=License-1-ov-file#readme';
 
 export function Settings() {
   const { t } = useTranslation('settings');

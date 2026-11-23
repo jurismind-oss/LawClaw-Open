@@ -141,7 +141,7 @@ describe('AppUpdater', () => {
     expect(setFeedUrlMock).toHaveBeenCalledWith(
       expect.objectContaining({
         provider: 'generic',
-        url: 'https://lawclaw.oss-cn-shanghai.aliyuncs.com/latest',
+        url: 'https://lawclaw-releases-20260916.oss-cn-shanghai.aliyuncs.com/latest',
       })
     );
     expect((await import('electron-updater')).autoUpdater.channel).toBe('latest');
@@ -160,7 +160,7 @@ describe('AppUpdater', () => {
     expect(setFeedUrlMock).toHaveBeenCalledWith(
       expect.objectContaining({
         provider: 'generic',
-        url: 'https://lawclaw.oss-cn-shanghai.aliyuncs.com/beta',
+        url: 'https://lawclaw-releases-20260916.oss-cn-shanghai.aliyuncs.com/beta',
       })
     );
     expect((await import('electron-updater')).autoUpdater.channel).toBe('beta');
