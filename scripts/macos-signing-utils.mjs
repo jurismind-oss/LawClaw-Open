@@ -36,7 +36,8 @@ function normalizeAppleApiKeyContent(value) {
 
 export function resolveMacSigningState(env = process.env) {
   const certificateLink = readNonEmpty(env, 'MAC_CERTS', 'CSC_LINK');
-  const certificatePassword = readDefined(env, 'MAC_CERTS_PASSWORD', 'CSC_KEY_PASSWORD');
+  // CI 注入的未配置 secret 是空字符串而非缺失键, 必须按空值剔除, 否则空 secret 会被误判为已提供.
+  const certificatePassword = readNonEmpty(env, 'MAC_CERTS_PASSWORD', 'CSC_KEY_PASSWORD');
   const hasCertificatePassword = certificatePassword !== undefined;
 
   const appleId = readNonEmpty(env, 'APPLE_ID');
