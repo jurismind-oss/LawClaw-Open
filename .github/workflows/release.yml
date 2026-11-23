@@ -847,12 +847,9 @@ jobs:
             bucket.delete_object(key)
             print(f"Deleted stale object oss://{bucket_name}/{key}")
 
-          # Remove legacy release history directory in OSS.
-          legacy_prefix = "releases/"
-          legacy_keys = [obj.key for obj in oss2.ObjectIterator(bucket, prefix=legacy_prefix)]
-          for key in legacy_keys:
-            bucket.delete_object(key)
-            print(f"Deleted legacy object oss://{bucket_name}/{key}")
+          # 桶内非本流水线管理的其他前缀(如 releases/ 历史遗留目录)一律不动:
+          # 发布流水线只允许删除本渠道前缀与 preview/ 下的对象, 越界清理曾导致
+          # releases/desktop 历史版本被整目录删除, 此处禁止任何形式的 legacy 清理.
 
           def upload_with_retry(object_key: str, artifact_path: Path, headers: dict[str, str]):
             attempts = 5
