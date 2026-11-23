@@ -23,6 +23,7 @@ const JURISMIND_PROVIDER_TYPE = 'jurismind';
 // llm-api 网关取消裸名 jurismind 后, 托管模型改为 pro 档; 旧托管模型名进入
 // LEGACY 集合, 启动迁移会把存量安装自动改写到新模型名.
 const JURISMIND_MANAGED_MODEL = 'jurismind/jurismind-pro';
+const JURISMIND_DEFAULT_BASE_URL = 'https://llm-api.jurismind.com/v1';
 const JURISMIND_LEGACY_MODELS = new Set([
   'jurismind',
   'jurismind/kimi-k2.5',
@@ -123,7 +124,15 @@ function normalizeJurismindProvider(
     return { changed: false, next: provider };
   }
 
-  if (!provider.model || !JURISMIND_LEGACY_MODELS.has(provider.model)) {
+  const modelChanged = Boolean(provider.model) && JURISMIND_LEGACY_MODELS.has(provider.model);
+  // jurismind 是第一方托管提供方, UI 不开放编辑地址; 存量安装可能固化已下线的
+  // 旧网关地址, 统一归一到当前网关, 升级后无需手动修复即可恢复聊天.
+  const baseUrlChanged =
+    typeof provider.baseUrl === 'string' &&
+    provider.baseUrl.trim() !== '' &&
+    provider.baseUrl !== JURISMIND_DEFAULT_BASE_URL;
+
+  if (!modelChanged && !baseUrlChanged) {
     return { changed: false, next: provider };
   }
 
@@ -131,7 +140,8 @@ function normalizeJurismindProvider(
     changed: true,
     next: {
       ...provider,
-      model: JURISMIND_MANAGED_MODEL,
+      ...(modelChanged ? { model: JURISMIND_MANAGED_MODEL } : {}),
+      ...(baseUrlChanged ? { baseUrl: JURISMIND_DEFAULT_BASE_URL } : {}),
       updatedAt: nowIso,
     },
   };

@@ -233,6 +233,56 @@ describe('provider migration', () => {
     expect(setOpenClawAgentModel).not.toHaveBeenCalled();
   });
 
+  it('normalizes stale jurismind gateway baseUrl even when the stored model is already current', async () => {
+    const savedProviders: Array<Record<string, unknown>> = [];
+    const saveProvider = vi.fn(async (config: Record<string, unknown>) => {
+      savedProviders.push(config);
+    });
+    const saveProviderKeyToOpenClaw = vi.fn();
+    const setOpenClawAgentModel = vi.fn();
+    const cleanupOpenClawProviderApiKeyConfig = vi.fn(() => false);
+    const cleanupOpenClawAuthProfilesEncoding = vi.fn(() => false);
+
+    const result = await migrateJurismindProviderModel({
+      getAllProviders: vi.fn(async () => [
+        {
+          id: 'jurismind',
+          type: 'jurismind' as const,
+          name: 'Jurismind',
+          baseUrl: 'http://101.132.245.215:3001/v1',
+          model: 'jurismind/jurismind-pro',
+          enabled: true,
+          createdAt: '2026-01-01T00:00:00.000Z',
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+      ]),
+      getApiKey: vi.fn(async () => 'sk-jurismind'),
+      saveProvider,
+      getDefaultProvider: vi.fn(async () => 'jurismind'),
+      saveProviderKeyToOpenClaw,
+      cleanupLegacyProviderProfiles: vi.fn(() => false),
+      setOpenClawAgentModel,
+      cleanupOpenClawProviderEntries: vi.fn(() => false),
+      getOpenClawAgentModelPrimary: vi.fn(() => 'jurismind/jurismind-pro'),
+      cleanupOpenClawProviderApiKeyConfig,
+      cleanupOpenClawAuthProfilesEncoding,
+    });
+
+    expect(result).toMatchObject({
+      touchedProviders: 1,
+      normalizedProviders: 1,
+      rewroteDefaultModel: false,
+      cleanedInvalidApiKeyConfig: false,
+      cleanedAuthProfileEncoding: false,
+    });
+    expect(savedProviders[0]).toMatchObject({
+      id: 'jurismind',
+      baseUrl: 'https://llm-api.jurismind.com/v1',
+      model: 'jurismind/jurismind-pro',
+    });
+    expect(setOpenClawAgentModel).not.toHaveBeenCalled();
+  });
+
   it('migrates qwen portal provider metadata to modelstudio semantics and rewrites the managed lawclaw model', async () => {
     const savedProviders: Array<Record<string, unknown>> = [];
     const saveProvider = vi.fn(async (config: Record<string, unknown>) => {
