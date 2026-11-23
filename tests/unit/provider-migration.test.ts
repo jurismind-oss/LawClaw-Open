@@ -175,12 +175,12 @@ describe('provider migration', () => {
     });
     expect(savedProviders[0]).toMatchObject({
       id: 'jurismind',
-      model: 'jurismind/jurismind-pro',
+      model: 'jurismind/jurismind-flash',
     });
     expect(setOpenClawAgentModel).toHaveBeenCalledWith(
       'lawclaw-main',
       'jurismind',
-      'jurismind/jurismind-pro'
+      'jurismind/jurismind-flash'
     );
     expect(cleanupOpenClawProviderApiKeyConfig).toHaveBeenCalledWith('jurismind');
     expect(cleanupOpenClawAuthProfilesEncoding).toHaveBeenNthCalledWith(1);
@@ -250,7 +250,7 @@ describe('provider migration', () => {
           type: 'jurismind' as const,
           name: 'Jurismind',
           baseUrl: 'http://101.132.245.215:3001/v1',
-          model: 'jurismind/jurismind-pro',
+          model: 'jurismind/jurismind-flash',
           enabled: true,
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-01-01T00:00:00.000Z',
@@ -263,7 +263,7 @@ describe('provider migration', () => {
       cleanupLegacyProviderProfiles: vi.fn(() => false),
       setOpenClawAgentModel,
       cleanupOpenClawProviderEntries: vi.fn(() => false),
-      getOpenClawAgentModelPrimary: vi.fn(() => 'jurismind/jurismind-pro'),
+      getOpenClawAgentModelPrimary: vi.fn(() => 'jurismind/jurismind-flash'),
       cleanupOpenClawProviderApiKeyConfig,
       cleanupOpenClawAuthProfilesEncoding,
     });
@@ -278,7 +278,7 @@ describe('provider migration', () => {
     expect(savedProviders[0]).toMatchObject({
       id: 'jurismind',
       baseUrl: 'https://llm-api.jurismind.com/v1',
-      model: 'jurismind/jurismind-pro',
+      model: 'jurismind/jurismind-flash',
     });
     expect(setOpenClawAgentModel).not.toHaveBeenCalled();
   });

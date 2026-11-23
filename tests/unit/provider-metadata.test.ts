@@ -43,7 +43,7 @@ describe('provider metadata', () => {
     expect(jurismind).toMatchObject({
       requiresApiKey: true,
       defaultBaseUrl: 'https://llm-api.jurismind.com/v1',
-      defaultModelId: 'jurismind/jurismind-pro',
+      defaultModelId: 'jurismind/jurismind-flash',
     });
     expect(jurismind?.model).toBeUndefined();
     expect(jurismind?.showBaseUrl).not.toBe(true);

@@ -30,13 +30,13 @@ describe('provider backend registry', () => {
     });
 
     expect(getProviderEnvVar('jurismind')).toBe('JURISMIND_API_KEY');
-    expect(getProviderDefaultModel('jurismind')).toBe('jurismind/jurismind-pro');
+    expect(getProviderDefaultModel('jurismind')).toBe('jurismind/jurismind-flash');
     expect(getProviderConfig('jurismind')).toMatchObject({
       baseUrl: 'https://llm-api.jurismind.com/v1',
       api: 'openai-completions',
       apiKeyEnv: 'JURISMIND_API_KEY',
       models: expect.arrayContaining([
-        expect.objectContaining({ id: 'jurismind-pro', name: 'jurismind-pro' }),
+        expect.objectContaining({ id: 'jurismind-flash', name: 'jurismind-flash' }),
         expect.objectContaining({ id: 'doubao', name: 'doubao', input: ['text', 'image'] }),
       ]),
     });

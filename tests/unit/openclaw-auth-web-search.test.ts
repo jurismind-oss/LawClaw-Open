@@ -196,7 +196,7 @@ describe('openclaw auth - jurismind web search sync', () => {
           agents: {
             defaults: {
               model: {
-                primary: 'jurismind/jurismind-pro',
+                primary: 'jurismind/jurismind-flash',
               },
             },
           },
@@ -205,7 +205,7 @@ describe('openclaw auth - jurismind web search sync', () => {
               jurismind: {
                 baseUrl: 'https://llm-api.jurismind.com/v1',
                 api: 'openai-completions',
-                models: [{ id: 'jurismind-pro', name: 'jurismind-pro' }],
+                models: [{ id: 'jurismind-flash', name: 'jurismind-flash' }],
               },
             },
           },
@@ -257,7 +257,7 @@ describe('openclaw auth - jurismind web search sync', () => {
     expect(next.models?.providers?.jurismind?.apiKey).toBe('JURISMIND_API_KEY');
     expect(next.models?.providers?.jurismind?.models).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ id: 'jurismind-pro', name: 'jurismind-pro' }),
+        expect.objectContaining({ id: 'jurismind-flash', name: 'jurismind-flash' }),
         expect.objectContaining({ id: 'doubao', name: 'doubao', input: ['text', 'image'] }),
       ])
     );
