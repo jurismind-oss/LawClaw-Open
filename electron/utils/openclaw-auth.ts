@@ -1982,7 +1982,7 @@ export async function syncBrowserConfigToOpenClaw(): Promise<void> {
 }
 
 function resolveJurismindWebSearchBaseUrl(): string {
-  return getProviderConfig('jurismind')?.baseUrl || 'http://101.132.245.215:3001/v1';
+  return getProviderConfig('jurismind')?.baseUrl || 'https://llm-api.jurismind.com/v1';
 }
 
 function upsertJurismindVisionModelCatalog(config: Record<string, unknown>): boolean {

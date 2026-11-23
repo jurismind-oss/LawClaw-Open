@@ -1,7 +1,7 @@
 const { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } = require('fs');
 const { join } = require('path');
 
-const DOUBAO_DEFAULT_BASE_URL = 'http://101.132.245.215:3001/v1';
+const DOUBAO_DEFAULT_BASE_URL = 'https://llm-api.jurismind.com/v1';
 const DOUBAO_DEFAULT_MODEL = 'doubao';
 const WINDOWS_SPAWN_PATCH_MARKER = 'lawclaw windows spawn patch v1';
 const WINDOWS_KILL_TREE_PATCH_MARKER = 'lawclaw windows kill-tree patch v1';

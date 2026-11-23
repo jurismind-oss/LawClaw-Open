@@ -42,7 +42,7 @@ describe('provider metadata', () => {
     expect(legacyMoonshot?.name).toBe('Moonshot (CN)');
     expect(jurismind).toMatchObject({
       requiresApiKey: true,
-      defaultBaseUrl: 'http://101.132.245.215:3001/v1',
+      defaultBaseUrl: 'https://llm-api.jurismind.com/v1',
       defaultModelId: 'jurismind/jurismind',
     });
     expect(jurismind?.model).toBeUndefined();

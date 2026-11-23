@@ -94,7 +94,7 @@ vi.mock('@electron/utils/provider-registry', () => ({
     }
     if (type === 'jurismind') {
       return {
-        baseUrl: 'http://101.132.245.215:3001/v1',
+        baseUrl: 'https://llm-api.jurismind.com/v1',
         api: 'openai-completions',
         apiKeyEnv: 'JURISMIND_API_KEY',
       };
@@ -427,7 +427,7 @@ describe('provider:validateKey resolves baseUrl for built-in providers', () => {
     expect(providerValidationMock.validateApiKeyWithProvider).toHaveBeenCalledWith(
       'jurismind',
       'sk-live',
-      { baseUrl: 'http://101.132.245.215:3001/v1' }
+      { baseUrl: 'https://llm-api.jurismind.com/v1' }
     );
   });
 });

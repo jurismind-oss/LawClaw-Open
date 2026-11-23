@@ -23,7 +23,7 @@ const providerRegistryMock = vi.hoisted(() => ({
   getProviderConfig: vi.fn((type: string) => {
     if (type === 'jurismind') {
       return {
-        baseUrl: 'http://101.132.245.215:3001/v1',
+        baseUrl: 'https://llm-api.jurismind.com/v1',
         api: 'openai-completions',
         apiKeyEnv: 'JURISMIND_API_KEY',
         models: [
@@ -214,7 +214,7 @@ describe('provider runtime sync', () => {
       'lawclaw-main',
       'jurismind',
       expect.objectContaining({
-        baseUrl: 'http://101.132.245.215:3001/v1',
+        baseUrl: 'https://llm-api.jurismind.com/v1',
         api: 'openai-completions',
         apiKey: 'JURISMIND_API_KEY',
         models: [

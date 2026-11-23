@@ -459,7 +459,7 @@ describe('chat:sendWithMedia vision routing', () => {
       models: {
         providers: {
           jurismind: {
-            baseUrl: 'http://101.132.245.215:3001/v1',
+            baseUrl: 'https://llm-api.jurismind.com/v1',
             api: 'openai-completions',
             models: [
               { id: 'jurismind', name: 'jurismind' },

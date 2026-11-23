@@ -48,7 +48,7 @@ const REGISTRY: Record<string, ProviderBackendMeta> = {
     envVar: 'JURISMIND_API_KEY',
     defaultModel: 'jurismind/jurismind',
     providerConfig: {
-      baseUrl: 'http://101.132.245.215:3001/v1',
+      baseUrl: 'https://llm-api.jurismind.com/v1',
       api: 'openai-completions',
       apiKeyEnv: 'JURISMIND_API_KEY',
       models: [

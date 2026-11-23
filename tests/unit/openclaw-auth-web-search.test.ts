@@ -106,7 +106,7 @@ describe('openclaw auth - jurismind web search sync', () => {
     expect(next.tools?.web?.search?.doubao).toBeUndefined();
     expect(next.plugins?.entries?.['jurismind-doubao']?.enabled).toBe(true);
     expect(next.plugins?.entries?.['jurismind-doubao']?.config?.webSearch?.apiKey).toBe('sk-jurismind');
-    expect(next.plugins?.entries?.['jurismind-doubao']?.config?.webSearch?.baseUrl).toBe('http://101.132.245.215:3001/v1');
+    expect(next.plugins?.entries?.['jurismind-doubao']?.config?.webSearch?.baseUrl).toBe('https://llm-api.jurismind.com/v1');
     expect(next.plugins?.entries?.['jurismind-doubao']?.config?.webSearch?.model).toBe('doubao');
   });
 
@@ -129,7 +129,7 @@ describe('openclaw auth - jurismind web search sync', () => {
                 maxResults: 4,
                 perplexity: {
                   apiKey: 'sk-legacy',
-                  baseUrl: 'http://101.132.245.215:3001/v1',
+                  baseUrl: 'https://llm-api.jurismind.com/v1',
                   model: 'doubao',
                 },
               },
@@ -178,7 +178,7 @@ describe('openclaw auth - jurismind web search sync', () => {
     expect(next.tools?.web?.search?.perplexity).toBeUndefined();
     expect(next.tools?.web?.search?.doubao).toBeUndefined();
     expect(next.plugins?.entries?.['jurismind-doubao']?.config?.webSearch?.apiKey).toBe('sk-jurismind');
-    expect(next.plugins?.entries?.['jurismind-doubao']?.config?.webSearch?.baseUrl).toBe('http://101.132.245.215:3001/v1');
+    expect(next.plugins?.entries?.['jurismind-doubao']?.config?.webSearch?.baseUrl).toBe('https://llm-api.jurismind.com/v1');
     expect(next.plugins?.entries?.['jurismind-doubao']?.config?.webSearch?.model).toBe('doubao');
   });
 
@@ -203,7 +203,7 @@ describe('openclaw auth - jurismind web search sync', () => {
           models: {
             providers: {
               jurismind: {
-                baseUrl: 'http://101.132.245.215:3001/v1',
+                baseUrl: 'https://llm-api.jurismind.com/v1',
                 api: 'openai-completions',
                 models: [{ id: 'jurismind', name: 'jurismind' }],
               },
@@ -364,7 +364,7 @@ describe('openclaw auth - jurismind web search sync', () => {
                 config: {
                   webSearch: {
                     apiKey: 'sk-jurismind',
-                    baseUrl: 'http://101.132.245.215:3001/v1',
+                    baseUrl: 'https://llm-api.jurismind.com/v1',
                     model: 'doubao',
                   },
                 },
@@ -424,7 +424,7 @@ describe('openclaw auth - jurismind web search sync', () => {
                 maxResults: 5,
                 doubao: {
                   apiKey: 'sk-legacy-jurismind',
-                  baseUrl: 'http://101.132.245.215:3001/v1',
+                  baseUrl: 'https://llm-api.jurismind.com/v1',
                   model: 'doubao',
                 },
               },
@@ -473,7 +473,7 @@ describe('openclaw auth - jurismind web search sync', () => {
     expect(next.tools?.web?.search?.doubao).toBeUndefined();
     expect(next.plugins?.entries?.['jurismind-doubao']?.enabled).toBe(true);
     expect(next.plugins?.entries?.['jurismind-doubao']?.config?.webSearch?.apiKey).toBe('sk-legacy-jurismind');
-    expect(next.plugins?.entries?.['jurismind-doubao']?.config?.webSearch?.baseUrl).toBe('http://101.132.245.215:3001/v1');
+    expect(next.plugins?.entries?.['jurismind-doubao']?.config?.webSearch?.baseUrl).toBe('https://llm-api.jurismind.com/v1');
     expect(next.plugins?.entries?.['jurismind-doubao']?.config?.webSearch?.model).toBe('doubao');
   });
 

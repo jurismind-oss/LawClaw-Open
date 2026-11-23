@@ -116,7 +116,7 @@ describe('openclaw auth - provider config apiKey markers', () => {
 
     const mod = await loadOpenClawAuthWithHome(homeDir);
     await mod.syncProviderConfigToOpenClaw('jurismind', 'jurismind', {
-      baseUrl: 'http://101.132.245.215:3001/v1',
+      baseUrl: 'https://llm-api.jurismind.com/v1',
       api: 'openai-completions',
       apiKeyEnv: 'JURISMIND_API_KEY',
     });
@@ -138,7 +138,7 @@ describe('openclaw auth - provider config apiKey markers', () => {
       };
     };
 
-    expect(next.models?.providers?.jurismind?.baseUrl).toBe('http://101.132.245.215:3001/v1');
+    expect(next.models?.providers?.jurismind?.baseUrl).toBe('https://llm-api.jurismind.com/v1');
     expect(next.models?.providers?.jurismind?.api).toBe('openai-completions');
     expect(next.models?.providers?.jurismind?.apiKey).toBe('JURISMIND_API_KEY');
     expect(next.models?.providers?.jurismind?.models).toEqual(
@@ -195,7 +195,7 @@ describe('openclaw auth - provider config apiKey markers', () => {
           models: {
             providers: {
               jurismind: {
-                baseUrl: 'http://101.132.245.215:3001/v1',
+                baseUrl: 'https://llm-api.jurismind.com/v1',
                 api: 'openai-completions',
                 apiKey: 'JURISMIND_API_KEY',
                 models: [{ id: 'jurismind', name: 'jurismind' }],
@@ -239,7 +239,7 @@ describe('openclaw auth - provider config apiKey markers', () => {
           models: {
             providers: {
               jurismind: {
-                baseUrl: 'http://101.132.245.215:3001/v1',
+                baseUrl: 'https://llm-api.jurismind.com/v1',
                 api: 'openai-completions',
                 apiKey: 'JURISMIND_API_KEY',
                 models: [{ id: 'jurismind', name: 'jurismind' }],
@@ -283,7 +283,7 @@ describe('openclaw auth - provider config apiKey markers', () => {
         {
           providers: {
             jurismind: {
-              baseUrl: 'http://101.132.245.215:3001/v1',
+              baseUrl: 'https://llm-api.jurismind.com/v1',
               api: 'openai-completions',
               models: [
                 { id: 'jurismind', name: 'jurismind' },
@@ -300,7 +300,7 @@ describe('openclaw auth - provider config apiKey markers', () => {
 
     const mod = await loadOpenClawAuthWithHome(homeDir);
     await mod.updateSingleAgentModelProvider('lawclaw-main', 'jurismind', {
-      baseUrl: 'http://101.132.245.215:3001/v1',
+      baseUrl: 'https://llm-api.jurismind.com/v1',
       api: 'openai-completions',
       models: [{ id: 'jurismind', name: 'jurismind' }],
     });
