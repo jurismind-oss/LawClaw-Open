@@ -44,6 +44,7 @@ import {
 import {
   clearJurismindMultimodalConfig,
   syncJurismindMultimodalConfig,
+  getOpenClawAgentModelPrimary,
 } from '../utils/openclaw-auth';
 import {
   getInternalAutomationConfig,
@@ -100,6 +101,7 @@ import { forgetManagedPresetInstallItem } from '../utils/preset-install-state';
 import {
   applyLawClawProviderSelection,
   clearLawClawProviderSelection,
+  isLawClawTemplateFallbackModel,
   isProviderAvailableForLawClaw,
   pickFallbackLawClawProvider,
 } from '../utils/lawclaw-provider-selection';
@@ -1900,7 +1902,14 @@ function registerProviderHandlers(gatewayManager: GatewayManager): void {
 
         // jurismind 为第一方托管提供方: 保存必须执行选择同步, 否则"删除后重新
         // 添加"的主模型会回落出厂模板(openai/gpt-5.4, 无凭据)导致对话超时.
+        let hardRestartAfterSave = false;
         if (config.type === 'jurismind' && config.enabled) {
+          // 删除提供方会把运行时推入破碎态(无可用模型), 该态下启动的运行以出厂
+          // 模板无限重试, 并让运行时无限推迟配置重载. 此时保存的修复配置必须以
+          // 硬重启生效, 杀掉破碎运行; 正常编辑则走防抖重启即可.
+          const previousModel = getOpenClawAgentModelPrimary('lawclaw-main');
+          hardRestartAfterSave =
+            !previousModel?.trim() || isLawClawTemplateFallbackModel(previousModel);
           try {
             await applyLawClawProviderSelection(config.id, { syncPolicy: 'if-managed' });
           } catch (selectionErr) {
@@ -1908,7 +1917,12 @@ function registerProviderHandlers(gatewayManager: GatewayManager): void {
           }
         }
 
-        gatewayManager.debouncedRestart();
+        if (hardRestartAfterSave) {
+          logger.info('Hard restarting Gateway after jurismind provider re-add (previous state was broken)');
+          await gatewayManager.restart();
+        } else {
+          gatewayManager.debouncedRestart();
+        }
       } catch (err) {
         console.warn('Failed to sync openclaw provider config:', err);
       }

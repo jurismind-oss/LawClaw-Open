@@ -117,7 +117,7 @@ function getManagedModelCandidates(provider: ManagedProviderSnapshot): Set<strin
   return candidates;
 }
 
-function isLawClawTemplateFallbackModel(model: string | undefined): boolean {
+export function isLawClawTemplateFallbackModel(model: string | undefined): boolean {
   if (!hasModelValue(model)) {
     return false;
   }
