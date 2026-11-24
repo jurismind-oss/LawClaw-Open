@@ -318,4 +318,55 @@ describe('lawclaw provider selection helpers', () => {
 
     expect(fallback?.id).toBe('provider-modelstudio');
   });
+  it('re-adding jurismind after provider deletion syncs managed model over empty selection', async () => {
+    secureStorageMock.getProvider.mockResolvedValue({
+      id: 'jurismind',
+      type: 'jurismind',
+      name: 'Jurismind',
+      model: 'jurismind/jurismind-flash',
+      enabled: true,
+      createdAt: '2026-03-01T00:00:00.000Z',
+      updatedAt: '2026-03-01T00:00:00.000Z',
+    });
+    // 删除提供方会清空主模型选择, 此处模拟该清空态.
+    openclawAuthMock.getOpenClawAgentModelPrimary.mockReturnValue(undefined);
+    secureStorageMock.getApiKey.mockResolvedValue('sk-jurismind');
+
+    const mod = await import('@electron/utils/lawclaw-provider-selection');
+
+    await mod.applyLawClawProviderSelection('jurismind', { syncPolicy: 'if-managed' });
+
+    expect(secureStorageMock.setDefaultProvider).toHaveBeenCalledWith('jurismind');
+    expect(openclawAuthMock.setOpenClawAgentModel).toHaveBeenCalledWith(
+      'lawclaw-main',
+      'jurismind',
+      'jurismind/jurismind-flash'
+    );
+    expect(openclawAuthMock.syncJurismindMultimodalConfig).toHaveBeenCalledWith('sk-jurismind');
+  });
+
+  it('re-adding jurismind replaces factory template fallback model after provider deletion', async () => {
+    secureStorageMock.getProvider.mockResolvedValue({
+      id: 'jurismind',
+      type: 'jurismind',
+      name: 'Jurismind',
+      model: 'jurismind/jurismind-flash',
+      enabled: true,
+      createdAt: '2026-03-01T00:00:00.000Z',
+      updatedAt: '2026-03-01T00:00:00.000Z',
+    });
+    // 出厂模板回落(openai/gpt-5.4)同样必须被托管模型替换, 否则对话超时.
+    openclawAuthMock.getOpenClawAgentModelPrimary.mockReturnValue('openai/gpt-5.4');
+    secureStorageMock.getApiKey.mockResolvedValue('sk-jurismind');
+
+    const mod = await import('@electron/utils/lawclaw-provider-selection');
+
+    await mod.applyLawClawProviderSelection('jurismind', { syncPolicy: 'if-managed' });
+
+    expect(openclawAuthMock.setOpenClawAgentModel).toHaveBeenCalledWith(
+      'lawclaw-main',
+      'jurismind',
+      'jurismind/jurismind-flash'
+    );
+  });
 });

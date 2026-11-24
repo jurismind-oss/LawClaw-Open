@@ -156,6 +156,17 @@ async function shouldSyncAgentModel(
     return !hasModelValue(currentModel);
   }
 
+  // jurismind 为第一方托管提供方: 选择为空(如删除提供方后重新添加)或回落到
+  // 出厂模板模型时, 必须落回托管模型, 否则网关会调用无凭据的 openai 出厂
+  // 模型(gpt-5.4)导致对话超时. 其余非托管模型视为用户自定义选择, 保持不动.
+  if (
+    syncPolicy === 'if-managed' &&
+    targetProvider.type === 'jurismind' &&
+    (!hasModelValue(currentModel) || isLawClawTemplateFallbackModel(currentModel))
+  ) {
+    return true;
+  }
+
   if (!hasModelValue(currentModel)) {
     return false;
   }

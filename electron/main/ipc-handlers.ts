@@ -1897,6 +1897,17 @@ function registerProviderHandlers(gatewayManager: GatewayManager): void {
       try {
         await syncSavedProviderToRuntime(config, apiKey);
         logger.info(`Scheduling Gateway restart after saving provider "${ock}" config`);
+
+        // jurismind 为第一方托管提供方: 保存必须执行选择同步, 否则"删除后重新
+        // 添加"的主模型会回落出厂模板(openai/gpt-5.4, 无凭据)导致对话超时.
+        if (config.type === 'jurismind' && config.enabled) {
+          try {
+            await applyLawClawProviderSelection(config.id, { syncPolicy: 'if-managed' });
+          } catch (selectionErr) {
+            console.warn('Failed to sync LawClaw provider selection after save:', selectionErr);
+          }
+        }
+
         gatewayManager.debouncedRestart();
       } catch (err) {
         console.warn('Failed to sync openclaw provider config:', err);
